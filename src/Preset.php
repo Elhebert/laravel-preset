@@ -21,7 +21,7 @@ class Preset extends BasePreset
         static::updateComposerDevPackages();
     }
 
-    protected static function updatePackagesArray(array $packages)
+    protected static function updatePackageArray(array $packages)
     {
         return array_merge([
             'browser-sync' => '^2.24.7',
