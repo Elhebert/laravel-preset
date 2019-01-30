@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dcf5f006cc4bea11267a47bc84fdcb43",
+    "content-hash": "b8ce09c705bbc1ff4a6412a62007465b",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -1693,6 +1693,56 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "sixlive/dotenv-editor",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sixlive/dotenv-editor.git",
+                "reference": "28851401f3ba75e91943200ae6fb1c5069c90ee6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sixlive/dotenv-editor/zipball/28851401f3ba75e91943200ae6fb1c5069c90ee6",
+                "reference": "28851401f3ba75e91943200ae6fb1c5069c90ee6",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^7.2"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.12",
+                "larapack/dd": "^1.0",
+                "phpunit/phpunit": "^7.0",
+                "sempro/phpunit-pretty-print": "^1.0.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "sixlive\\DotenvEditor\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "TJ Miller",
+                    "email": "oss@tjmiller.co",
+                    "homepage": "https://tjmiller.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A tool to edit phpdotenv files",
+            "homepage": "https://github.com/sixlive/dotenv-editor",
+            "keywords": [
+                "dotenv",
+                "dotenv-editor",
+                "phpdotenv"
+            ],
+            "time": "2018-11-05T16:22:15+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

@@ -4,6 +4,7 @@ namespace Elhebert\LaravelPreset;
 
 use Illuminate\Support\Arr;
 use Illuminate\Filesystem\Filesystem;
+use sixlive\DotenvEditor\DotenvEditor;
 use Illuminate\Foundation\Console\Presets\Preset as BasePreset;
 
 class Preset extends BasePreset
@@ -11,11 +12,11 @@ class Preset extends BasePreset
     public static function install($command)
     {
         $command->task('Update package.json', function () {
-            return static::updatePackages();
+            static::updatePackages();
         });
 
         $command->task('Clean node_modules', function () {
-            return static::removeNodeModules();
+            static::removeNodeModules();
         });
 
         $command->task('Install JS dependencies', function () {
@@ -27,27 +28,27 @@ class Preset extends BasePreset
         });
 
         $command->task('Update Webpack configuration', function () {
-            return static::updateWebpackConfiguration();
+            static::updateWebpackConfiguration();
         });
 
         $command->task('Update scripts', function () {
-            return static::updateJavaScript();
+            static::updateJavaScript();
         });
 
         $command->task('Update views', function () {
-            return static::updateTemplates();
+            static::updateTemplates();
         });
 
         $command->task('Update language files', function () {
-            return static::updateLocaleFiles();
+            static::updateLocaleFiles();
         });
 
         $command->task('Update .gitignore', function () {
-            return static::updateGitignore();
+            static::updateGitignore();
         });
 
         $command->task('Add various configuration files', function () {
-            return static::addToolingConfigurationFiles();
+            static::addToolingConfigurationFiles();
         });
 
         $command->task('Install composer dependencies', function () {
@@ -56,6 +57,14 @@ class Preset extends BasePreset
 
         $command->task('Install composer dev-dependencies', function () {
             return static::updateComposerDevPackages();
+        });
+
+        $command->task('Regenerate composer autoload file', function () {
+            static::runCommand('composer dumpautoload');
+        });
+
+        $command->task('Update ENV files', function () {
+            static::updateEnvFile();
         });
     }
 
@@ -143,7 +152,7 @@ class Preset extends BasePreset
         copy(__DIR__ . '/stubs/phpunit.xml', base_path('phpunit.xml'));
     }
 
-    public static function updateComposerPackages()
+    protected static function updateComposerPackages()
     {
         $packages = [
             'bensampo/laravel-enum',
@@ -154,7 +163,7 @@ class Preset extends BasePreset
         static::runCommand('composer require ' . implode(' ', $packages));
     }
 
-    public static function updateComposerDevPackages()
+    protected static function updateComposerDevPackages()
     {
         $packages = [
             'beyondcode/laravel-query-detector',
@@ -163,6 +172,14 @@ class Preset extends BasePreset
         ];
 
         static::runCommand('composer require --dev ' . implode(' ', $packages));
+    }
+
+    protected static function updateEnvFile()
+    {
+        $editor = new DotenvEditor;
+        $editor->load(base_path('.env.example'));
+        $editor->set('SENTRY_DSN', '');
+        $editor->save();
     }
 
     /** @see https://github.com/sixlive/laravel-preset/blob/master/src/Preset.php#L89 */
