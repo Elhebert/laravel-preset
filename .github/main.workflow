@@ -1,4 +1,4 @@
-workflow "New workflow" {
+workflow "Analyse code for errors" {
   on = "push"
   resolves = ["PHPStan"]
 }
