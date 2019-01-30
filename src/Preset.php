@@ -2,23 +2,61 @@
 
 namespace Elhebert\LaravelPreset;
 
+use Illuminate\Support\Arr;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\Presets\Preset as BasePreset;
 
 class Preset extends BasePreset
 {
-    public static function install()
+    public static function install($command)
     {
-        static::updatePackages();
-        static::updateStyles();
-        static::updateWebpackConfiguration();
-        static::updateJavaScript();
-        static::updateTemplates();
-        static::updateLocaleFiles();
-        static::removeNodeModules();
-        static::updateGitignore();
-        static::addToolingConfigurationFiles();
-        static::updateComposerPackages();
-        static::updateComposerDevPackages();
+        $command->task('Update package.json', function () {
+            return static::updatePackages();
+        });
+
+        $command->task('Clean node_modules', function () {
+            return static::removeNodeModules();
+        });
+
+        $command->task('Install JS dependencies', function () {
+            return static::installJavascriptDependencies();
+        });
+
+        $command->task('Update styles', function () {
+            return static::updateStyles();
+        });
+
+        $command->task('Update Webpack configuration', function () {
+            return static::updateWebpackConfiguration();
+        });
+
+        $command->task('Update scripts', function () {
+            return static::updateJavaScript();
+        });
+
+        $command->task('Update views', function () {
+            return static::updateTemplates();
+        });
+
+        $command->task('Update language files', function () {
+            return static::updateLocaleFiles();
+        });
+
+        $command->task('Update .gitignore', function () {
+            return static::updateGitignore();
+        });
+
+        $command->task('Add various configuration files', function () {
+            return static::addToolingConfigurationFiles();
+        });
+
+        $command->task('Install composer dependencies', function () {
+            return static::updateComposerPackages();
+        });
+
+        $command->task('Install composer dev-dependencies', function () {
+            return static::updateComposerDevPackages();
+        });
     }
 
     protected static function updatePackageArray(array $packages)

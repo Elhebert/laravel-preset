@@ -9,8 +9,8 @@ class LaravelPresetServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        PresetCommand::macro('elhebert', function () {
-            Preset::install();
+        PresetCommand::macro('elhebert', function ($command) {
+            Preset::install($command);
         });
     }
 }
