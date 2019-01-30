@@ -1,0 +1,29 @@
+# Misc
+.DS_Store
+
+# PHP Storm
+/.idea
+.phpstorm.meta.php
+_ide_helper.php
+
+# Laravel
+.env
+/public/hot
+/public/storage
+/public/fonts
+/public/mix-manifest.json
+/public/css
+/public/js
+/public/media
+/public/images
+
+/storage/*.key
+/storage/medialibrary
+
+# PHP
+/vendor
+.php_cs.cache
+
+# Node
+/node_modules
+npm-debug.log*
